@@ -71,7 +71,7 @@ const NavBar = () => {
       {/* Top Navbar */}
       <div className="w-full px-2 md:px-6 py-3 md:py-4 flex items-center justify-between border-b border-gray-700 bg-gradient-to-r from-[#0f182c] to-[#647792] shadow-md relative">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2" onClick={()=>navigate('/')}>
           <img src={logo} alt="Cozystay Logo" className="h-12 w-auto object-contain border rounded-lg" />
         </div>
 
