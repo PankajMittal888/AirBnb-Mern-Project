@@ -92,7 +92,6 @@ const ListingContext = ({children}) => {
                     setSearchData(null)
                     console.log("erroe come in handle search",error);   
                 }
-
               }
 
              
