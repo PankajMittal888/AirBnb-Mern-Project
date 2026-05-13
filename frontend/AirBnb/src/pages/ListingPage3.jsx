@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
+import { CurrentUserContext } from '../context/UserContext';
 import { CreateListingContext } from '../context/ListingContext';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import MyListing from './MyListing'
 
 const ListingPage3 = () => {
   const {
@@ -12,6 +14,7 @@ const ListingPage3 = () => {
      HandleListing,
      addListing,setAddListing
   } = useContext(CreateListingContext);
+  const { getCurrentUser } = useContext(CurrentUserContext);
 
   const navigate = useNavigate();
 
@@ -74,10 +77,15 @@ const ListingPage3 = () => {
         <button
           type="submit"
           className="w-[70%] sm:w-[60%] md:w-[30%] lg:w-[25%] border-gray-700 bg-gradient-to-r from-[#0e1d3b] to-[#7f9ac0] text-white text-lg font-medium py-3 rounded-xl hover:scale-102 transition-all shadow-lg"
-          onClick={()=>{
-            HandleListing();
-            navigate('/')
-          }}
+          // onClick={()=>{
+          //   HandleListing();
+          //   navigate('/')
+          // }}
+          onClick={async () => {
+   await HandleListing();
+   await getCurrentUser();
+   navigate('/MyListing');
+}}
         >
           {addListing?"Adding...":"Add Listing"}
         </button>

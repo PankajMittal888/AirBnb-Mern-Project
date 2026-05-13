@@ -153,9 +153,9 @@ const ViewCard = () => {
         <div className="text-lg font-semibold text-gray-700   mb-4 flex items-start w-[85%] md:mt-7 mt-15  sm:mt-20">
           <span className="text-[#0e1d3d]">
             {" "}
-            IN {card.landMark.toUpperCase()}{" "}
+            IN {card?.landMark.toUpperCase()}{" "}
           </span>{" "}
-          , <span className="text-[#36435f]"> {card.city.toUpperCase()}</span>
+          , <span className="text-[#36435f]"> {card?.city.toUpperCase()}</span>
         </div>
 
         {/* Image Section */}
@@ -163,7 +163,7 @@ const ViewCard = () => {
           {/* LEFT SIDE IMAGE */}
           <div className="md:w-[60%] w-full h-[200px] md:h-[52vh]">
             <img
-              src={card.image1}
+              src={card?.image1}
               alt="Front View 1"
               className="w-full h-full object-cover"
             />
@@ -173,14 +173,14 @@ const ViewCard = () => {
           <div className="flex flex-col gap-0.5 md:w-[38%] w-full">
             <div className="h-[200px] md:h-[26vh]">
               <img
-                src={card.image2}
+                src={card?.image2}
                 alt="Front View 2"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="h-[200px] md:h-[26vh]">
               <img
-                src={card.image3}
+                src={card?.image3}
                 alt="Front View 3"
                 className="w-full h-full object-cover"
               />
@@ -191,17 +191,17 @@ const ViewCard = () => {
         {/* Info Section */}
         <div className="mt-6 flex flex-col  items-start w-[85%]  space-y-3 w-ful px-4 md:px-1 sm:px-0 ">
           <h1 className="text-xl font-bold text-gray-800">
-            {card.title.toUpperCase()} — {card.category.toUpperCase()}
+            {card?.title.toUpperCase()} — {card?.category.toUpperCase()}
           </h1>
-          <h2 className="text-gray-800 text-xl">{card.description}</h2>
+          <h2 className="text-gray-800 text-xl">{card?.description}</h2>
           <p className="text-gray-800 text-lg font-semibold">
-            Rent: ₹{card.rent}
+            Rent: ₹{card?.rent}
           </p>
         </div>
 
         {/* Button */}
         <div className="mt-6 md:w-[86%] w-[85%]  flex items-start md:px-1 px-1   sm:px-0">
-          {card.host == currentUser.user._id && (
+          {card.host == currentUser?.user?._id &&   (
             <button
               type="submit"
               className="w-[70%] sm:w-[60%] md:w-[30%] lg:w-[25%] border-gray-700 bg-gradient-to-r from-[#0e1d3b] to-[#7f9ac0] text-white text-lg font-medium py-3 rounded-xl hover:scale-102 transition-all shadow-lg"
@@ -211,7 +211,7 @@ const ViewCard = () => {
             </button>
           )}
 
-          {card.host !== currentUser.user._id && (
+          {card.host !== currentUser?.user?._id && (
             <button
               type="submit"
               className="w-[70%] sm:w-[60%] md:w-[30%] lg:w-[25%] border-gray-700 bg-gradient-to-r from-[#0e1d3b] to-[#7f9ac0] text-white text-lg font-medium py-3 rounded-xl hover:scale-102 transition-all shadow-lg"
@@ -407,7 +407,7 @@ const ViewCard = () => {
 
                     <button
               type="submit"
-              onClick={()=>{HandleBooking(card._id);navigate('/booked')}}
+              onClick={()=>{HandleBooking(card?._id);navigate('/booked')}}
               className="w-[60%] sm:w-[60%] md:w-[50%] lg:w-[50%] border-gray-700 bg-gradient-to-r from-[#0e1d3b] to-[#7f9ac0] text-white text-lg ml-5 md:ml-0 font-medium py-2 md:self-center mt-6 rounded-xl hover:scale-102 transition-all shadow-lg"
             >
               Book Now
@@ -423,16 +423,16 @@ const ViewCard = () => {
 
                   <div className="w-[95%] h-[30%] flex items-center rounded-lg justify-between border border-gray-400 gap-4 p-2 overflow-hidden">
                     <div className="w-[40%] h-[100%] p-2 rounded-xl flex items-center justify-center flex-shrink-0 ">
-                      <img src={card.image1} className="rounded-xl" alt="" />
+                      <img src={card?.image1} className="rounded-xl" alt="" />
                     </div>
 
                       <div className="w-[60%] h-[100%]  flex items-center flex-col gap-1.5 justify-center flex-shrink-0 ">
-                        <h1 className="w-[95%] truncate">IN, {card.landMark.toUpperCase()} , {card.city.toUpperCase() }</h1>
+                        <h1 className="w-[95%] truncate">IN, {card?.landMark.toUpperCase()} , {card?.city.toUpperCase() }</h1>
                       
-                     <h2 className="w-[95%] truncate text-[13px]">{card.title.toUpperCase()}</h2>
-                      <h2 className="w-[95%] truncate text-[12px]">{card.category.toUpperCase()}</h2>
+                     <h2 className="w-[95%] truncate text-[13px]">{card?.title.toUpperCase()}</h2>
+                      <h2 className="w-[95%] truncate text-[12px]">{card?.category.toUpperCase()}</h2>
                       {/* <h1>bjkqsbhih</h1> */}
-                      <h2 className="flex gap-2 items-center justify-start w-[95%]"><FaStar className="text-[14px]"/> {card.rating}</h2>
+                      <h2 className="flex gap-2 items-center justify-start w-[95%]"><FaStar className="text-[14px]"/> {card?.rating}</h2>
                     </div>
                     
                   </div>
@@ -441,10 +441,10 @@ const ViewCard = () => {
                     <h1 className="text-[20px] font-semibold">Booking Price :-</h1>
                     <p className="flex items-center justify-between w-[100%] text-[17px]">
                       <span className="font-semibold">
-                          {`₹ ${card.rent} X ${night} nights`}
+                          {`₹ ${card?.rent} X ${night} nights`}
                       </span>
                       <span>
-                        {card.rent*night}
+                        {card?.rent*night}
                       </span>
                     </p>
 
@@ -454,7 +454,7 @@ const ViewCard = () => {
                            AirBnb Charge
                       </span>
                       <span>
-                        {card.rent*night*(7/100)}
+                        {card?.rent*night*(7/100)}
                       </span>
                     </p>
 
@@ -463,7 +463,7 @@ const ViewCard = () => {
                       Tax
                       </span>
                       <span>
-                       {card.rent*night*(7/100)}
+                       {card?.rent*night*(7/100)}
                       </span>
                     </p>
 

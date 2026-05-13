@@ -33,31 +33,6 @@ const ListingContext = ({children}) => {
             const[searchData,setSearchData]=useState([]);
           
 
-            const HandleListing= async ()=>{
-                    const formData=new FormData();
-                    formData.append("title",title);
-                    formData.append("description",description);
-                    formData.append("image1",backendImage1);
-                    formData.append("image2",backendImage2);
-                    formData.append("image3",backendImage3);
-                    formData.append("city",city);
-                    formData.append("rent",rent);
-                    formData.append("landMark",landMark);
-                    formData.append("category",category);
-                  setAddListing(true)
-
-                   try {
-                    let result=await axios.post(server+'/api/listing/add',formData,{withCredentials:true})
-                    console.log(result.data +"l5ntjouh35itio5tituiutuhuihppppppppppppppppppppp");
-                    setAddListing(false)
-                     toast.success("List Created SuccesFully")
-                   } catch (error) {
-                    console.log("error come in listing context",error);
-                        toast.error(error.response.data.message);
-                   }
-
-            }
-
             const GetListing=async ()=>{
                 try {
                   let list=await axios.get(server+'/api/listing/get',{withCredentials:true})
@@ -68,6 +43,107 @@ const ListingContext = ({children}) => {
                   console.log("error come in get liating datad context",error); 
                 }
             }
+
+
+            const HandleListing = async () => {
+
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("image1", backendImage1);
+    formData.append("image2", backendImage2);
+    formData.append("image3", backendImage3);
+    formData.append("city", city);
+    formData.append("rent", rent);
+    formData.append("landMark", landMark);
+    formData.append("category", category);
+
+    setAddListing(true);
+
+    try {
+
+        let result = await axios.post(
+            server + '/api/listing/add',
+            formData,
+            { withCredentials: true }
+        );
+
+        console.log(result.data);
+
+       toast.success("List Created Successfully");
+
+await GetListing();
+
+setTitle("");
+setDescription("");
+setFrontendImage1("");
+setFrontendImage2("");
+setFrontendImage3("");
+
+setBackendImage1("");
+setBackendImage2("");
+setBackendImage3("");
+
+setCity("");
+setRent("");
+setLandMark("");
+setCategory("");
+
+setAddListing(false);
+
+return true;
+
+    } catch (error) {
+
+        console.log("error come in listing context", error);
+
+        toast.error(error.response?.data?.message);
+
+        setAddListing(false);
+
+        return false;
+    }
+}
+
+            // const HandleListing= async ()=>{
+            //         const formData=new FormData();
+            //         formData.append("title",title);
+            //         formData.append("description",description);
+            //         formData.append("image1",backendImage1);
+            //         formData.append("image2",backendImage2);
+            //         formData.append("image3",backendImage3);
+            //         formData.append("city",city);
+            //         formData.append("rent",rent);
+            //         formData.append("landMark",landMark);
+            //         formData.append("category",category);
+            //       setAddListing(true)
+
+            //        try {
+            //         let result=await axios.post(server+'/api/listing/add',formData,{withCredentials:true})
+            //         console.log(result.data +"l5ntjouh35itio5tituiutuhuihppppppppppppppppppppp");
+            //             toast.success("List Created SuccesFully")
+            //              await GetListing()
+            //         setAddListing(false)
+                 
+
+            //        } catch (error) {
+            //         console.log("error come in listing context",error);
+            //             toast.error(error.response.data.message);
+            //        }
+
+            // }
+
+            // const GetListing=async ()=>{
+            //     try {
+            //       let list=await axios.get(server+'/api/listing/get',{withCredentials:true})
+            //     // console.log(list.data);
+            //     setListDate(list.data)
+            //     setNewListData(list.data)
+            //     } catch (error) {
+            //       console.log("error come in get liating datad context",error); 
+            //     }
+            // }
 
 
               const ViewCard=async(id)=>{
@@ -84,6 +160,12 @@ const ListingContext = ({children}) => {
 
 
               const HandleSearch=async(data)=>{
+
+                   if (!data || data.trim() === "") {
+    GetListing(); // saari listing waapas dikha do
+    return;
+                   }
+
                 try {
                   let result=await axios.get(server+`/api/listing/search?query=${data}`,{withCredentials:true})
                   // searchData(result.data);
