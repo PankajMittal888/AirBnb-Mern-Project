@@ -53,6 +53,8 @@ const NavBar = () => {
 
 
    const HandleViewCard=(id)=>{
+       setInput("");
+    setSearchData([]);
     if(currentUser){
             ViewCard(id);
     }else{
@@ -61,9 +63,16 @@ const NavBar = () => {
   }
 
 
-  useEffect(()=>{
-    HandleSearch(input)
-  },[input])
+useEffect(() => {
+
+  if(input.trim() === ""){
+    setSearchData([]);
+    return;
+  }
+
+  HandleSearch(input);
+
+}, [input]);
 
 
   return (
