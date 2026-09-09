@@ -225,7 +225,7 @@ const ViewCard = () => {
         {/* now the update popup will come */}
 
         {showpop && (
-          <div className="w-[100vw] h-full z-[100] flex items-center absolute justify-center bg-gray-500/30 backdrop-blur-md p-0">
+           <div className="fixed inset-0 w-full h-screen z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm overflow-y-auto">
             {/* Close Button */}
             <button
               onClick={() => setShowpop(false)}
